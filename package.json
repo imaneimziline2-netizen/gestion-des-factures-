@@ -1,0 +1,31 @@
+{
+  "name": "gestion-des-factures",
+  "version": "1.0.0",
+  "description": "",
+  "main": "service.js",
+  "scripts": {
+  "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imaneimziline2-netizen/gestion-des-factures-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/imaneimziline2-netizen/gestion-des-factures-/issues"
+  },
+  "homepage": "https://github.com/imaneimziline2-netizen/gestion-des-factures-#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.1",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
