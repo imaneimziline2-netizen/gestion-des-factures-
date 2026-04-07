@@ -2,8 +2,13 @@ import User from "../models/userModele.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+import createUser from "../validator/userValidator.js";
 export async function registerService(req, res) {
     const { name, email, password } = req.body;
+
+    const errors = createUser.validate({ email, password, email });
+
+    console.log(errors);
     const hashedPassword = await bcrypt.hash(password, 12);
     const user = await User.create({
         name,
@@ -15,16 +20,17 @@ export async function registerService(req, res) {
         process.env.JWT_SECRET,
         { expiresIn: "1d" },
     );
-const safeUser = await User.findById(user._id).select("-password");
+    const safeUser = await User.findById(user._id).select("-password");
 
-res.json({
-  user: safeUser,
-  token,
-});
+    res.json({
+        user: safeUser,
+        token,
+    });
 }
 
 export async function loginService(req, res) {
     const { email, password } = req.body;
+
     const user = await User.findOne({ email });
     if (!user) {
         return res.status(400).json({ message: "Invalid credentials" });

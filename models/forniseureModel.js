@@ -1,52 +1,38 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-export const fornisSchema = new mongoose.Schema({
-
-    name:{
-        type : String,
-        require :true
+export const fornisSchema = new mongoose.Schema(
+    {
+        name: {
+            type: String,
+            required: [true, "Le nom du fournisseur est requis"],
+            trim: true,
+        },
+        contact: {
+            email: {
+                type: String,
+                lowercase: true,
+                trim: true,
+            },
+            phone: {
+                type: String,
+                trim: true,
+            },
+            address: {
+                type: String,
+                trim: true,
+            },
+        },
+        clientId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
+        },
     },
-    email:{
-        type: String,
-        require :true
+    {
+        timestamps: true,
     },
-    phone:{
-        type: String,
-        require :true
-    },
-    address:{
-        type: String,
-        require :true
-    },
-    userID:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }
-})
+);
 
+const Forniseure = mongoose.model("Forniseur", fornisSchema);
 
-
-
-
-
-
-
-
-
-// id
-
-// name
-
-// contact
-
-// email
-
-// phone
-
-// address
-
-// createdAt
-
-// updatedAt
-
-// userId
+export default Forniseure;

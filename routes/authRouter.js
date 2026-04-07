@@ -1,17 +1,27 @@
-import express from "express"
-import { registerController ,loginController,myProfileController} from "../controllers/authController.js";
+import {
+    registerController,
+    loginController,
+    myProfileController,
+} from "../controllers/authController.js";
 import { validateMiddleware } from "../middlewares/validatMiddleware.js";
-import {authMiddleware,emaiExiste} from "../middlewares/authMiddleware.js";
+import { authMiddleware, emaiExiste } from "../middlewares/authMiddleware.js";
+import createUser from "../validator/userValidator.js";
+import { Router } from "express";
 
-const userRoute=express.Router();
+const userRouter = Router();
 
-userRoute.post("/register",validateMiddleware,emaiExiste,registerController)
-userRoute.post("/login",loginController)
-userRoute.get("/me",authMiddleware,myProfileController)
+userRouter.post(
+    "/register",
+    validateMiddleware,
+    emaiExiste,
+    registerController,
+);
+userRouter.post("/login", loginController);
+userRouter.get("/me", authMiddleware, myProfileController);
 
-userRoute.get("/test",(req,res)=>{
+userRouter.get("/test", (req, res) => {
     res.status(200).json({
-        message:"user is created"
-    })
-})
-export default userRoute
+        message: "user is created",
+    });
+});
+export default userRouter;
