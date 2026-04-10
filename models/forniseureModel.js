@@ -33,6 +33,6 @@ export const fornisSchema = new mongoose.Schema(
     },
 );
 
-const Forniseure = mongoose.model("Forniseur", fornisSchema);
+const Forniseure = mongoose.model("Forniseure", fornisSchema);
 
 export default Forniseure;

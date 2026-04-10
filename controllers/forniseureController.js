@@ -1,7 +1,9 @@
 import {
     creatForniseure,
     grtAllFornisseure,
-    grtByIdFornisseure
+    grtByIdFornisseure,
+    updateFornisseure,
+    deletFornisseure
 } from "../services/fornisService.js";
 
 async function forniseureController(req, res) {
@@ -34,7 +36,6 @@ async function grtAllFornisseurController(req, res) {
     }
 }
 
-
 async function grtByIdFornisseurController(req, res) {
     try {
         const fornisseure = await grtByIdFornisseure(req, res);
@@ -49,5 +50,26 @@ async function grtByIdFornisseurController(req, res) {
     }
 }
 
+async function updateFornisseureController(req, res) {
+    const fornisseure = await updateFornisseure(req, res);
+    return res
+        .status(200)
+        .json({ status: "success", fornisseure: fornisseure });
+}
 
-export  {forniseureController ,grtAllFornisseurController,grtByIdFornisseurController};
+async function deletFornisseureController(req, res) {
+    const fornisseure = await deletFornisseure(req, res);
+    return res
+        .status(200)
+        .json({ status: "success", message: "fornisseure est suprimée" });
+}
+
+
+
+export {
+    forniseureController,
+    grtAllFornisseurController,
+    grtByIdFornisseurController,
+    updateFornisseureController,
+    deletFornisseureController
+};
