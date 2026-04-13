@@ -4,6 +4,8 @@ const createUser = joi.object({
     email: joi.string().email().required(),
     password: joi.string().required(),
     confirmPassword: joi.ref("password"),
+    role: joi.string().required(),
+
 });
 
 export default createUser;

@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 import createUser from "../validator/userValidator.js";
 export async function registerService(req, res) {
-    const { name, email, password } = req.body;
+    const { name, email, password , role } = req.body;
 
     const errors = createUser.validate({ email, password, email });
 
@@ -14,6 +14,7 @@ export async function registerService(req, res) {
         name,
         email,
         password: hashedPassword,
+        role
     });
     const token = jwt.sign(
         { userId: user._id, role: user.role },
