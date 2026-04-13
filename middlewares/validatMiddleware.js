@@ -59,7 +59,7 @@ export const validateFactureMiddleware = async (req, res, next) => {
     next();
 };
 
-export const validatePaimentMiddleware = async (req, res, next) => {
+export const validatePaimentMiddleware = (req, res, next) =>{
     const { error } = createPaiment.validate(req.body, {
         abortEarly: false,
     });
