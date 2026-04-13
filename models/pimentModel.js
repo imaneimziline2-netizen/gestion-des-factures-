@@ -20,6 +20,10 @@ const paymentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: User,
     required: true
+  },method :{
+    type : String,
+    require :true,
+    enum :["cach" , "check" ,"bank_transfer"]
   }
 }, {
   timestamps: true
