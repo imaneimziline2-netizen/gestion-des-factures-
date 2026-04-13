@@ -1,17 +1,17 @@
 import Facture from "../models/factureModel.js";
-import creatPaiment from "../services/payService.js";
+import creatPayment from "../services/payService.js";
 
 export const creatPaimentController = async (req, res) => {
     try {
-        const { facture, payment } = await creatPaiment(req, res);
+        const { facture, payment } = await creatPayment(req, res);
 
-        return res.status(201).json({
+        return{
             status: "success",
             payment,
             facture,
-        });
+        };
     } catch (error) {
-        return res.status(500).json({
+         res.status(500).json({
             status: "error",
             message: error.message,
         });
