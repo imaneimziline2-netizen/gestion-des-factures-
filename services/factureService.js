@@ -5,6 +5,7 @@ export const creatFacture = async (req, res) => {
     try {
         const { fournisseur, amount, dueDate } = req.body;
 
+
         const fornisseure = await Forniseure.findOne({
             _id: fournisseur,
             clientId: req.user.userId,
@@ -83,27 +84,25 @@ export const updatFacture = async (req, res) => {
     });
 };
 
-
 export const deleteFacture = async (req, res) => {
-  try {
-    const facture = await Facture.findByIdAndDelete(req.params.id);
-    
-    if (!facture) {
-      return res.status(404).json({
-        success: false,
-        message: "Facture non trouvée"
-      });
+    try {
+        const facture = await Facture.findByIdAndDelete(req.params.id);
+
+        if (!facture) {
+            return res.status(404).json({
+                success: false,
+                message: "Facture non trouvée",
+            });
+        }
+
+        res.json({
+            success: true,
+            message: "Facture supprimée avec succès",
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
     }
-    
-    res.json({
-      success: true,
-      message: "Facture supprimée avec succès"
-    });
-    
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message
-    });
-  }
 };

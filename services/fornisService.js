@@ -3,19 +3,19 @@ import Forniseure from "../models/forniseureModel.js";
 export async function creatForniseure(req, res) {
     const { name, contact } = req.body;
 
-    // const forniseure = await Forniseure.create({
-    //     name,
-    //     contact: {
-    //         email: contact?.email || "",
-    //         phone: contact?.phone || "",
-    //         address: contact?.address || "",
-    //     },
-    //     clientId: req.user.userId,
-    // });
+    const forniseure = await Forniseure.create({
+        name,
+        contact: {
+            email: contact?.email || "",
+            phone: contact?.phone || "",
+            address: contact?.address || "",
+        },
+        clientId: req.user.userId,
+    });
 
     // return forniseure;
     return {
-        message: "success",
+        forniseure
     };
 }
 
