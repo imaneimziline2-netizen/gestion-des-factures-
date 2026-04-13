@@ -1,4 +1,4 @@
-import { creatPaimentController } from "../controllers/paimentContoller.js";
+import { creatPaimentController,getfactureDetailsServiceController } from "../controllers/paimentContoller.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
 import { validatePaimentMiddleware } from "../middlewares/validatMiddleware.js";
 import { statMiddleware } from "../middlewares/statAutoMiddleware.js";
@@ -12,6 +12,12 @@ paimentreRoute.post(
     validatePaimentMiddleware,
     statMiddleware,
     creatPaimentController,
+);
+paimentreRoute.get(
+    "/:id/invoice",
+    authMiddleware,
+    validatePaimentMiddleware,
+    getfactureDetailsServiceController,
 );
 
 export default paimentreRoute;
