@@ -30,6 +30,9 @@ const factureSchema = new mongoose.Schema({
   montantPaye: {
     type: Number,
     default: 0
+  },
+  restant:{
+    type : Number
   }
 }, {
   timestamps: true
